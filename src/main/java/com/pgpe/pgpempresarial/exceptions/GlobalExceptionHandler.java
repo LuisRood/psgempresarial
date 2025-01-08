@@ -1,12 +1,19 @@
 package com.pgpe.pgpempresarial.exceptions;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<Map<String, Object>> handleNotFoundException(RecursoNoEncontradoException ex) {
+    public ResponseEntity<Map<String, Object>> handleNotFoundException(ResourceNotFoundException ex) {
         Map<String, Object> errorResponse = new HashMap<>();
         errorResponse.put("timestamp", LocalDateTime.now());
         errorResponse.put("message", ex.getMessage());
@@ -14,8 +21,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(OperacionNoPermitidaException.class)
-    public ResponseEntity<Map<String, Object>> handleForbiddenException(OperacionNoPermitidaException ex) {
+    @ExceptionHandler(OperationNotPermittedException.class)
+    public ResponseEntity<Map<String, Object>> handleForbiddenException(OperationNotPermittedException ex) {
         Map<String, Object> errorResponse = new HashMap<>();
         errorResponse.put("timestamp", LocalDateTime.now());
         errorResponse.put("message", ex.getMessage());

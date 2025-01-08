@@ -1,5 +1,6 @@
 package com.pgpe.pgpempresarial.services.impl;
 
+import com.pgpe.pgpempresarial.exceptions.ResourceNotFoundException;
 import com.pgpe.pgpempresarial.models.Projects;
 import com.pgpe.pgpempresarial.repositories.ProjectsRepository;
 import com.pgpe.pgpempresarial.services.ProjectsService;
@@ -28,7 +29,6 @@ public class IProjectsService implements ProjectsService {
     public Projects findProject(UUID projectId) {
         return projectsRepository.findById(projectId)
                 .orElseThrow(() -> new ResourceNotFoundException("No se encontro el projecto"));
-        return null;
     }
 
     @Override
