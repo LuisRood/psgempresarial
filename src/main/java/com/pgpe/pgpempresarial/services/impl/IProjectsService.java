@@ -9,7 +9,6 @@ import com.pgpe.pgpempresarial.repositories.ProjectsRepository;
 import com.pgpe.pgpempresarial.services.ProjectsService;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,12 +17,16 @@ import java.util.UUID;
 @Service
 public class IProjectsService implements ProjectsService {
 
-    @Autowired
-    private ProjectsRepository projectsRepository;
-    @Autowired
-    private ProjectsMapper projectsMapper;
+    private final ProjectsRepository projectsRepository;
+
+    private final ProjectsMapper projectsMapper;
 
     private static final Logger logger = LoggerFactory.getLogger(IProjectsService.class);
+
+    public IProjectsService(ProjectsRepository projectsRepository, ProjectsMapper projectsMapper){
+        this.projectsRepository = projectsRepository;
+        this.projectsMapper = projectsMapper;
+    }
 
     @Override
     public Projects saveProject(Projects project) {
