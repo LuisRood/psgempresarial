@@ -63,7 +63,7 @@ public class IProjectsService implements ProjectsService {
     public void deleteProject(UUID projectId) {
         try{
             Projects project = findProject(projectId);
-            projectsRepository.deleteById(projectId);
+            projectsRepository.deleteById(project.getProjectId());
         }catch (ResourceNotFoundException e){
             throw e;
         }catch (Exception e) {

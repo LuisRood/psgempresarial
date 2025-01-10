@@ -1,19 +1,19 @@
 package com.pgpe.pgpempresarial.mappers;
 
-import com.pgpe.pgpempresarial.dtos.ProjectsDTO;
-import com.pgpe.pgpempresarial.models.Projects;
+import com.pgpe.pgpempresarial.dtos.UsersDTO;
+import com.pgpe.pgpempresarial.models.Users;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
 @Mapper(componentModel = "spring")
-public interface ProjectsMapper {
+public interface UsersMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    void updateProjectFromDto(ProjectsDTO dto, @MappingTarget Projects entity);
+    void updateUserFromDto(UsersDTO dto, @MappingTarget Users entity);
 
-    ProjectsDTO toDTO(Projects entity);
+    UsersDTO toDTO(Users entity);
 
-    Projects toEntity(ProjectsDTO dto);
+    Users toEntity(UsersDTO dto);
 }
